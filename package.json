@@ -1,0 +1,35 @@
+{
+  "name": "themer",
+  "version": "1.0.0",
+  "description": "Tool allowing customization of CSS variables on any website",
+  "main": "lib/index.js",
+  "scripts": {
+    "watch": "babel -w src/ -d lib/",
+    "build": "babel src/ -d lib/",
+    "lint": "eslint ./src",
+    "fix": "eslint ./src --fix"
+  },
+  "repository": "git@github.com:WebSeed/themer.git",
+  "author": "WebSeed <w.bamford@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.6",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "17.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.9.1"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  }
+}
