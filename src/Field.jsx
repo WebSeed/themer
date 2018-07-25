@@ -65,7 +65,7 @@ class Field extends Component {
       <div className={`ct-field ${selected && 'is-selected'}`} style={style}>
         <div className="ct-field-main">
           <h3 className="ct-field-title">{ title }</h3>
-          <div className="ct-field-type">{ type }</div>
+          {/* <div className="ct-field-type">{ type }</div> */}
           <div className="ct-field-info">
             <div><code>{linked ? value : computedValue}</code></div>
           </div>
