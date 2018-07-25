@@ -36,7 +36,7 @@ class Fields extends Component {
               }) => (
                 <div
                   key={id}
-                  className="ct-cell ct-w1/2@sm ct-w1/3@md ct-w1/4@lg ct-mb"
+                  className="ct-cell ct-w1/2@sm ct-w1/3@md ct-mb"
                 >
                   <Field
                     id={id}

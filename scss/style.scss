@@ -2,7 +2,7 @@ $ct-header-height: 48px;
 $ct-main-height: 300px;
 $ct-height: $ct-header-height + $ct-main-height;
 $ct-side-width: 300px;
-$ct-field-height: 16rem;
+$ct-field-height: 12rem;
 $ct-font-size-sm: 0.875rem;
 $ct-keyline-border: 1px solid rgba(255, 255, 255, 0.2);
 $ct-breakpoint-sm: 720px;
@@ -32,6 +32,7 @@ $ct-spacer-quarter: $ct-spacer * 0.25;
   font-family: sans-serif;
   background-color: white;
   transition: height 0.25s ease-out;
+  border-top: 1px solid #ccc;
 }
 
 .ct-btn-reset {

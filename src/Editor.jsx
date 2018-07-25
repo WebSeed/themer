@@ -4,6 +4,8 @@ import { ChromePicker as ColorPicker } from 'react-color'
 class Editor extends Component {
   handleChange = (color, event) => {
     // console.log('CHANGE', color)
+    const { field, onChange } = this.props
+    onChange(field.id, color)
   }
 
   handleChangeComplete = (color, event) => {
