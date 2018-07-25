@@ -1,6 +1,6 @@
 {
-  "name": "themer",
-  "version": "1.0.0",
+  "name": "css-themer",
+  "version": "0.0.1",
   "description": "Tool allowing customization of CSS variables on any website",
   "main": "lib/index.js",
   "scripts": {
@@ -30,6 +30,8 @@
   "dependencies": {
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
-    "react-dom": "^16.4.1"
+    "react-color": "^2.14.1",
+    "react-dom": "^16.4.1",
+    "tinycolor2": "^1.4.1"
   }
 }
