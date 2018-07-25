@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import tinycolor from 'tinycolor2'
 
-import { getCssVar, setCssVar } from './utils'
-
-const buildTitle = (id) => id.replace(/-/g, ' ')
+import { getCssVar } from './cssUtils'
+import { buildTitleFromId } from './utils'
 
 class Field extends Component {
   static propTypes = {
@@ -54,19 +53,21 @@ class Field extends Component {
       type,
       selected,
     } = this.props
-    const title = buildTitle(id)
+    const title = buildTitleFromId(id)
     const style = {
       backgroundColor: computedValue,
       color: tinycolor(computedValue).isLight() ? '#000' : '#FFF',
     }
+
+    const linked = computedValue !== value
+
     return (
       <div className={`ct-field ${selected && 'is-selected'}`} style={style}>
         <div className="ct-field-main">
           <h3 className="ct-field-title">{ title }</h3>
           <div className="ct-field-type">{ type }</div>
           <div className="ct-field-info">
-            <div><code>{computedValue}</code></div>
-            { computedValue !== value && <div><code>{value}</code></div> }
+            <div><code>{linked ? value : computedValue}</code></div>
           </div>
         </div>
         <div className="ct-field-controls">

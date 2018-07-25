@@ -4,10 +4,12 @@ $ct-height: $ct-header-height + $ct-main-height;
 $ct-side-width: 300px;
 $ct-field-height: 12rem;
 $ct-font-size-sm: 0.875rem;
-$ct-keyline-border: 1px solid rgba(255, 255, 255, 0.2);
+$ct-keyline-border: 1px solid rgba(0, 0, 0, 0.2);
+$ct-field-keyline-border: 1px solid rgba(255, 255, 255, 0.2);
 $ct-breakpoint-sm: 720px;
 $ct-breakpoint-md: 880px;
 $ct-breakpoint-lg: 1200px;
+$ct-color-v-light-grey: #f0f0f0;
 $ct-color-dark: #333;
 $ct-drop-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10);
 
@@ -32,7 +34,7 @@ $ct-spacer-quarter: $ct-spacer * 0.25;
   font-family: sans-serif;
   background-color: white;
   transition: height 0.25s ease-out;
-  border-top: 1px solid #ccc;
+  border-top: $ct-keyline-border;
 }
 
 .ct-btn-reset {
@@ -46,6 +48,7 @@ $ct-spacer-quarter: $ct-spacer * 0.25;
   line-height: normal;
   cursor: pointer;
   outline: none;
+  text-align: left;
 }
 
 .ct.is-open {
@@ -129,7 +132,42 @@ $ct-spacer-quarter: $ct-spacer * 0.25;
 }
 
 .ct-linker {
-  padding: $ct-spacer;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.ct-linker-title {
+  background-color: #ccc;
+  color: white;
+  font-size: $ct-font-size-sm;
+  text-transform: uppercase;
+  padding: $ct-spacer-half $ct-spacer;
+  color: $ct-color-dark;
+  margin-bottom: 0;
+}
+
+.ct-linker-list {
+  margin: 0;
+  padding: 0;
+  text-indent: 0;
+  list-style-type: none;
+  border-left: $ct-keyline-border;
+}
+
+.ct-linker-item {
+  border-bottom: $ct-keyline-border;
+}
+
+.ct-linker-button {
+  padding: $ct-spacer-half $ct-spacer;
+  text-transform: uppercase;
+  width: 100%;
+  font-size: $ct-font-size-sm;
+
+  &:hover,
+  &:focus {
+    background-color: $ct-color-v-light-grey;
+  }
 }
 
 .ct-field {
@@ -176,7 +214,7 @@ $ct-spacer-quarter: $ct-spacer * 0.25;
 }
 
 .ct-field-controls {
-  border-top: $ct-keyline-border;
+  border-top: $ct-field-keyline-border;
 }
 
 .ct-field-control {
@@ -184,11 +222,12 @@ $ct-spacer-quarter: $ct-spacer * 0.25;
   padding: $ct-spacer;
   width: 50%;
 
+  text-align: center;
   text-transform: uppercase;
   font-size: $ct-font-size-sm;
 
   &:not(:first-child) {
-    border-left: $ct-keyline-border;
+    border-left: $ct-field-keyline-border;
   }
 
   &:hover,

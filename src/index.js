@@ -4,7 +4,8 @@ import PropTypes from 'prop-types'
 import Layer from './Layer'
 import Fields from './Fields'
 import Editor from './Editor'
-import { setCssVar } from './utils'
+import Linker from './Linker'
+import { setCssVar } from './cssUtils'
 
 const Header = ({ onToggle, open }) => (
   <div className="ct-header">
@@ -26,7 +27,8 @@ const Main = ({
   onSelectLink,
   selectedForEditing,
   selectedForLinking,
-  onChangeField,
+  onEditField,
+  onLinkField,
 }) => (
   <div className="ct-main">
     {
@@ -54,10 +56,10 @@ const Main = ({
                 )
               }
               {
-                selectedForEditing && <Editor field={selectedForEditing} onChange={onChangeField} />
+                selectedForEditing && <Editor field={selectedForEditing} onChange={onEditField} />
               }
               {
-                selectedForLinking && <div className="ct-linker">Linking dialog to appear here!</div>
+                selectedForLinking && <Linker selectedField={selectedForLinking} fields={fields} onLink={onLinkField} />
               }
             </div>
           </Fragment>
@@ -133,10 +135,18 @@ class CSSThemer extends Component {
     }))
   }
 
-  handleChangeField = (fieldId, value) => {
+  handleEditField = (fieldId, value) => {
     const field = this.fieldsById[fieldId]
     field.value = value.hex
     setCssVar(fieldId, field.value)
+    this.forceUpdate()
+  }
+
+  handleLinkField = (fromId, toId) => {
+    const fromField = this.fieldsById[fromId]
+    const toField = this.fieldsById[toId]
+    fromField.value = `var(--${toField.id})`
+    setCssVar(fromField.id, fromField.value)
     this.forceUpdate()
   }
 
@@ -159,7 +169,8 @@ class CSSThemer extends Component {
             onSelectLink={this.handleSelectLink}
             selectedForEditing={selectedForEditing}
             selectedForLinking={selectedForLinking}
-            onChangeField={this.handleChangeField}
+            onEditField={this.handleEditField}
+            onLinkField={this.handleLinkField}
           />
         </div>
       </Layer>
