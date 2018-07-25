@@ -8,9 +8,12 @@ class Editor extends Component {
 
   handleChangeComplete = (color, event) => {
     // console.log('CHANGE COMPLETE', color)
+    const { field, onChange } = this.props
+    onChange(field.id, color)
   }
 
   render() {
+    const { field } = this.props
     const styles = {
       default: {
         picker: { // See the individual picker source for which keys to use
@@ -27,6 +30,7 @@ class Editor extends Component {
           styles={styles}
           onChange={this.handleChange}
           onChangeComplete={this.handleChangeComplete}
+          color={field.value}
         />
       </div>
     )

@@ -12,46 +12,55 @@ class Field extends Component {
     value: PropTypes.string,
     // label: PropTypes.string,
     type: PropTypes.string,
+    onSelectEdit: PropTypes.func.isRequired,
+    onSelectLink: PropTypes.func.isRequired,
+    selected: PropTypes.bool.isRequired,
   }
 
   static defaultProps = {
     value: undefined,
-    // label: undefined,
     type: 'color',
   }
 
   constructor(props) {
     super(props)
-    const { id, value } = props
+    const { id } = props
     this.state = {
-      value,
-      computedValue: getCssVar(id),
+      computedValue: undefined,
     }
   }
 
-  // handleChange = (event) => {
-  //   const { value } = event.target
-  //   this.setState(() => ({ value }))
+  static getDerivedStateFromProps(props, state) {
+    return {
+      computedValue: getCssVar(props.id),
+    }
+  }
 
-  //   // TODO: temp
-  //   const { id } = this.props
-  //   setCssVar(id, value)
-  // }
+  handleSelectEdit = () => {
+    const { id, onSelectEdit } = this.props
+    onSelectEdit(id)
+  }
 
-  // handleClick = () => {
-  //   console.log('CLICK')
-  // }
+  handleSelectLink = () => {
+    const { id, onSelectLink } = this.props
+    onSelectLink(id)
+  }
 
   render() {
-    const { value, computedValue } = this.state
-    const { id, type } = this.props
+    const { computedValue } = this.state
+    const {
+      id,
+      value,
+      type,
+      selected,
+    } = this.props
     const title = buildTitle(id)
     const style = {
       backgroundColor: computedValue,
       color: tinycolor(computedValue).isLight() ? '#000' : '#FFF',
     }
     return (
-      <div className="ct-field" style={style}>
+      <div className={`ct-field ${selected && 'is-selected'}`} style={style}>
         <div className="ct-field-main">
           <h3 className="ct-field-title">{ title }</h3>
           <div className="ct-field-type">{ type }</div>
@@ -61,8 +70,20 @@ class Field extends Component {
           </div>
         </div>
         <div className="ct-field-controls">
-          <button type="button" className="ct-btn-reset ct-field-control ct-field-edit">Edit</button>
-          <button type="button" className="ct-btn-reset ct-field-control ct-field-link">Link</button>
+          <button
+            type="button"
+            className="ct-btn-reset ct-field-control ct-field-edit"
+            onClick={this.handleSelectEdit}
+          >
+            Edit
+          </button>
+          <button
+            type="button"
+            className="ct-btn-reset ct-field-control ct-field-link"
+            onClick={this.handleSelectLink}
+          >
+            Link
+          </button>
         </div>
       </div>
     )
